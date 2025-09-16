@@ -96,3 +96,6 @@ D:\NOTE APPLICATION\NotesApi\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Dia
 D:\NOTE APPLICATION\NotesApi\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 D:\NOTE APPLICATION\NotesApi\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 D:\NOTE APPLICATION\NotesApi\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
+D:\NOTE APPLICATION\NotesApi\obj\Debug\net8.0\NotesApi.sourcelink.json
+D:\NOTE APPLICATION\NotesApi\bin\Debug\net8.0\BCrypt.Net-Next.dll
+D:\NOTE APPLICATION\NotesApi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
