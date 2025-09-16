@@ -19,7 +19,7 @@ namespace NotesApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] string? search, [FromQuery] string? sortBy, [FromQuery] bool asc = false)
         {
-            int userId = 1; // 🔒 Temporary static user ID
+            int userId = 1; 
             var notes = await _repo.GetAllAsync(userId, search, sortBy, asc);
             return Ok(notes);
         }
@@ -45,7 +45,7 @@ namespace NotesApi.Controllers
             return CreatedAtAction(nameof(GetById), new { id = newId }, createdNote);
         }
 
-        // PUT: api/notes/5
+        // PUT: api/notes/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, NoteUpdateDto dto)
         {
@@ -56,7 +56,7 @@ namespace NotesApi.Controllers
             return NoContent();
         }
 
-        // DELETE: api/notes/5
+        // DELETE: api/notes/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

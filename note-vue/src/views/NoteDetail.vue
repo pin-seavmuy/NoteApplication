@@ -15,7 +15,7 @@
       <h1 class="text-xl font-bold mb-4">⭐ {{ note.title }}</h1>
       <div class="mt-4 text-gray-800 whitespace-pre-wrap">{{ note.content }}</div>
       <div class="mt-2"></div>
-      <p class="text-smtext-gray-500">Created at: {{ formatDate(note.createdAt) }}</p>
+      <p class="text-sm text-gray-500">Created at: {{ formatDate(note.createdAt) }}</p>
       <p v-if="note.updatedAt" class="text-sm text-gray-500">Updated: {{ formatDate(note.updatedAt) }}</p>
     </div>
   </div>
@@ -25,6 +25,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import api from '../api/axios'
+import { formatDate } from '../utils/dateFormatter'
 
 interface Note {
   id: number
@@ -50,10 +51,6 @@ async function fetchNote() {
   } finally {
     loading.value = false
   }
-}
-
-function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleString()
 }
 
 function goBack() {

@@ -1,6 +1,6 @@
 <template>
   <div class="p-6">
-    <NotesHeader v-model:search="search" />
+    <NotesHeader v-model:search="search" v-model:sortBy="sortBy" />
 
     <div class="flex items-center justify-between my-6">
       <router-link
@@ -20,7 +20,7 @@
     </div>
 
     <div v-if="loading" class="text-center text-gray-500">Loading...</div>
-    <div v-else-if="filteredNotes.length === 0" class="text-center text-gray-500">
+    <div v-else-if="sortedNotes.length === 0" class="text-center text-gray-500">
       No notes found.
     </div>
 
@@ -29,7 +29,7 @@
       class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
       <NoteWrapper
-        v-for="note in filteredNotes"
+        v-for="note in sortedNotes"
         :key="note.id"
         :note="note"
         style="background-color: #F9F6F3;"
@@ -37,13 +37,11 @@
       />
     </div>
 
-    <!-- Create Note Modal -->
     <CreateNoteModal
       v-model:show="showCreateModal"
       @noteCreated="fetchNotes"
     />
 
-    <!-- Edit Note Modal -->
     <EditNoteModal
       v-model:show="showEditModal"
       :noteId="selectedNoteId"
@@ -77,6 +75,8 @@ const showCreateModal = ref(false)
 const showEditModal = ref(false)
 const selectedNoteId = ref<number | null>(null)
 
+const sortBy = ref<'title' | 'createdAt'>('title') // default sort
+
 async function fetchNotes() {
   loading.value = true
   try {
@@ -94,6 +94,17 @@ const filteredNotes = computed(() =>
     note.title.toLowerCase().includes(search.value.toLowerCase())
   )
 )
+
+const sortedNotes = computed(() => {
+  return [...filteredNotes.value].sort((a, b) => {
+    if (sortBy.value === 'title') {
+      return a.title.localeCompare(b.title)
+    } else if (sortBy.value === 'createdAt') {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    }
+    return 0
+  })
+})
 
 function openEditModal(noteId: number) {
   selectedNoteId.value = noteId

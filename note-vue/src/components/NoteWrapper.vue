@@ -3,8 +3,13 @@
     class="note-wrapper p-4 border rounded shadow hover:shadow-lg transition cursor-pointer"
     @click="goToDetail"
   >
-    <div class="flex justify-between items-start mb-2">
-      <h3 class="font-semibold text-lg">{{ note.title }}</h3>
+    <div class="flex justify-between items-start">
+      <div>
+        <h3 class="font-semibold text-lg">{{ note.title }}</h3>
+        <p class="text-xs text-gray-500 mt-1">
+          Created: {{ formattedCreatedAt }}
+        </p>
+      </div>
       <div class="flex space-x-2">
         <button
           @click.stop="$emit('edit', note.id)"
@@ -23,7 +28,7 @@
       </div>
     </div>
 
-    <p class="text-gray-700 text-sm line-clamp-3 whitespace-pre-wrap">
+    <p class="text-gray-700 text-sm line-clamp-3 whitespace-pre-wrap mt-2">
       {{ note.content }}
     </p>
   </div>
@@ -32,6 +37,8 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import api from '../api/axios'
+import { computed, defineProps } from 'vue'
+import { formatDate } from '../utils/dateFormatter'
 
 const props = defineProps<{
   note: {
@@ -55,12 +62,14 @@ async function handleDelete() {
 
   try {
     await api.delete(`/Notes/${props.note.id}`)
-    window.location.reload() // Optionally emit an event for better UX
+    window.location.reload()
   } catch (error) {
     console.error('Failed to delete note:', error)
     alert('Failed to delete note.')
   }
 }
+
+const formattedCreatedAt = computed(() => formatDate(props.note.createdAt))
 </script>
 
 <style scoped>
