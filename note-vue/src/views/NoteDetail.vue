@@ -1,6 +1,5 @@
 <template>
   <div class="p-4 max-w mx-auto">
-    <!-- Back Button -->
     <button
       @click="goBack"
       class="mb-4 text-md text-blue-600 hover:underline flex items-center"

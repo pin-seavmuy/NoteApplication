@@ -1,13 +1,11 @@
 <script setup lang="ts">
-  import NotesList from '../components/NotesList.vue'
 </script>
 
 <template>
   <div>
-    <nav class="p-4 bg-gray-100 flex space-x-4">
-      <!-- <router-link to="/" class="text-blue-600 hover:underline">Notes</router-link> -->
-      <!-- <router-link to="/create" class="text-blue-600 hover:underline">Create Note</router-link> -->
-    </nav>
+    <!-- <nav class="p-4 bg-gray-100 flex space-x-4">
+      <router-link to="/" class="text-blue-600 hover:underline">Notes</router-link>
+    </nav> -->
 
     <router-view />
   </div>

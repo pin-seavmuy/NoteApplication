@@ -21,7 +21,7 @@
 
     <div v-if="loading" class="text-center text-gray-500">Loading...</div>
     <div v-else-if="sortedNotes.length === 0" class="text-center text-gray-500">
-      No notes found.
+      📂 No notes found.
     </div>
 
     <div
@@ -75,7 +75,7 @@ const showCreateModal = ref(false)
 const showEditModal = ref(false)
 const selectedNoteId = ref<number | null>(null)
 
-const sortBy = ref<'title' | 'createdAt'>('title') // default sort
+const sortBy = ref<'title' | 'createdAt'>('title') 
 
 async function fetchNotes() {
   loading.value = true

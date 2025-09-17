@@ -66,5 +66,12 @@ namespace NotesApi.Controllers
                 token = token
             });
         }
+
+        [HttpPost("logout")]
+        [Authorize]
+        public IActionResult Logout()
+        {
+            return Ok(new { message = "Logged out successfully." });
+        }
     }
 }
